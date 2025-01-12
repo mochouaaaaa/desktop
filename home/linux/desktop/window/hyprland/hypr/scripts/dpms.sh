@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-hyprctl workspaces > /dev/null
 
-if [ $? -ne 0 ]; then
+if pgrep swaylock > /dev/null; the
     hyprctl dispatch dpms off
 fi

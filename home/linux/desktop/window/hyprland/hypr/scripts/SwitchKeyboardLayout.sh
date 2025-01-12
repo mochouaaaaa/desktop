@@ -1,6 +1,4 @@
-#!/bin/bash
-# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
-# This is for changing kb_layouts. Set kb_layouts in $settings_file
+#!/usr/bin/env bash
 
 layout_f="$HOME/.cache/kb_layout"
 settings_file="$HOME/.config/hypr/UserConfigs/UserSettings.conf"

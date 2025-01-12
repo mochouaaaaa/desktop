@@ -1,8 +1,4 @@
-{
-  pkgs,
-  pkgs-unstable,
-  ...
-}: {
+{ pkgs, pkgs-unstable, ... }: {
   home.packages = with pkgs; [
     waybar # the status bar
     swaybg # the wallpaper
@@ -41,11 +37,11 @@
       recursive = true;
       force = true;
     };
-    # ".config/waybar" = {
-    #   source = ./waybar;
-    #   recursive = true;
-    #   force = true;
-    # };
+    ".config/waybar" = {
+      source = ./waybar;
+      recursive = true;
+      force = true;
+    };
     # ".config/wlogout" = {
     #   source = ./wlogout;
     #   recursive = true;
