@@ -1,12 +1,5 @@
 # https://github.com/NixOS/nixpkgs/blob/master/lib/attrsets.nix
-{lib, ...}: 
-let
-  osRelease = if builtins.pathExists "/etc/os-release" then pkgs.lib.attrsets.parseKeyValueFile "/etc/os-release" else {};
-  isNixos = pkgs.lib.hasPrefix "nixos" (pkgs.lib.strings.concatStringsSep "" (pkgs.lib.optionals (builtins.hasAttr "ID" osRelease) [ osRelease.ID ]));
-in {
-
-  inherit isNixos;
-
+{lib, ...}: {
   # Generate an attribute set from a list.
   #
   #   lib.genAttrs [ "foo" "bar" ] (name: "x_" + name)

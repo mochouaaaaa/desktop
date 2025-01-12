@@ -52,6 +52,8 @@
     honkai-railway-grub-theme.url = "github:voidlhf/StarRailGrubThemes";
     # keymap replaced
     xremap-flake.url = "github:xremap/nix-flake";
+    # flatpak
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.1";
@@ -108,23 +110,6 @@
     };
 
     ########################  Some non-flake repositories  #########################################
-
-    # doom-emacs is a configuration framework for GNU Emacs.
-    doomemacs = {
-      url = "github:doomemacs/doomemacs";
-      flake = false;
-    };
-
-    polybar-themes = {
-      url = "github:adi1090x/polybar-themes";
-      flake = false;
-    };
-
-    # my wallpapers
-    wallpapers = {
-      url = "github:ryan4yin/wallpapers";
-      flake = false;
-    };
 
     nur-ryan4yin.url = "github:ryan4yin/nur-packages";
     nur-ataraxiasjel.url = "github:AtaraxiaSjel/nur";

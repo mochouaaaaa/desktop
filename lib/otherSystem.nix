@@ -16,10 +16,8 @@
   };
 in {
   otherConfigurations = {
-    # 修改输出属性名
-    # 直接使用 NixOS 模块或 Home Manager
     home-manager.users."${myvars.username}" = {
-      home.stateVersion = "${myvars.homeVersion}";
+      home.stateVersion = "24.11";
       imports = home-modules;
       pkgs = pkgs;
       extraSpecialArgs = specialArgs;

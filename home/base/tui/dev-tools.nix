@@ -21,7 +21,7 @@
 
     tree-sitter
 
-    colmena # nixos's remote deployment tool
+    # colmena # nixos's remote deployment tool
 
     # db related
     pkgs-unstable.mycli
@@ -51,19 +51,4 @@
     # conda is not available for MacOS
     # conda
   ];
-
-  programs = {
-    neovim = {
-      enable = true;
-      extraLuaPackages = ps: [ps.magick];
-      extraPackages = [pkgs.imagemagick];
-    };
-    direnv = {
-      enable = true;
-      nix-direnv.enable = true;
-
-      enableZshIntegration = true;
-      enableBashIntegration = true;
-    };
-  };
 }

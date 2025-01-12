@@ -4,12 +4,7 @@
   outputs,
 }: let
   username = myvars.username;
-  hosts = [
-    "mochou"
-  ];
+  hosts = ["mochou"];
 in
-  lib.genAttrs
-  hosts
-  (
-    name: outputs.nixosConfigurations.${name}.config.home-manager.users.${username}.home.homeDirectory
-  )
+  lib.genAttrs hosts (name:
+    outputs.nixosConfigurations.${name}.config.home-manager.users.${username}.home.homeDirectory)

@@ -28,7 +28,8 @@
     ''
       # custom cava config
     ''
-    + builtins.readFile "${nur-ryan4yin.packages.${pkgs.system}.catppuccin-cava}/mocha.cava";
+    + builtins.readFile
+    "${nur-ryan4yin.packages.${pkgs.system}.catppuccin-cava}/mocha.cava";
 
   programs = {
     mpv = {
@@ -38,7 +39,5 @@
     };
   };
 
-  services = {
-    playerctld.enable = true;
-  };
+  services = {playerctld.enable = true;};
 }
