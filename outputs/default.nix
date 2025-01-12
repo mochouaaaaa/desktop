@@ -1,12 +1,12 @@
-{ self
-, nixpkgs
-, pre-commit-hooks
-, ...
-} @ inputs:
-let
+{
+  self,
+  nixpkgs,
+  pre-commit-hooks,
+  ...
+} @ inputs: let
   inherit (inputs.nixpkgs) lib;
-  mylib = import ../lib { inherit lib; };
-  myvars = import ../vars { inherit lib; };
+  mylib = import ../lib {inherit lib;};
+  myvars = import ../vars {inherit lib;};
 
   # Add my custom lib, vars, nixpkgs instance, and all the inputs to specialArgs,
   # so that I can use them in all my nixos/home-manager/darwin modules.
@@ -17,7 +17,9 @@ let
 
       # use unstable branch for some packages to get the latest updates
       pkgs-unstable = import inputs.nixpkgs-unstable {
-        inherit system; # refer the `system` parameter form outer scope recursively
+        inherit
+          system
+          ; # refer the `system` parameter form outer scope recursively
         # To use chrome, we need to allow the installation of non-free software
         config.allowUnfree = true;
       };
@@ -29,18 +31,20 @@ let
     };
 
   # This is the args for all the haumea modules in this folder.
-  args = { inherit inputs lib mylib myvars genSpecialArgs; };
+  args = {inherit inputs lib mylib myvars genSpecialArgs;};
 
   # modules for each supported system
   nixosSystems = {
-    x86_64-linux = import ./x86_64-linux (args // { system = "x86_64-linux"; });
+    x86_64-linux =
+      import ./x86_64-linux/nixos.nix (args // {system = "x86_64-linux";});
   };
   darwinSystems = {
     # x86_64-darwin = import ./x86_64-darwin (args // {system = "x86_64-darwin";});
   };
 
   otherSystems = {
-    x86_64-linux = import ./x86_64-linux (args // { system = "x86_64-linux"; });
+    x86_64-linux =
+      import ./x86_64-linux/home.nix (args // {system = "x86_64-linux";});
   };
 
   allSystems = nixosSystems // darwinSystems // otherSystems;
@@ -49,33 +53,38 @@ let
   darwinSystemValues = builtins.attrValues darwinSystems;
   otherSystemValues = builtins.attrValues otherSystems;
 
-  allSystemValues = nixosSystemValues ++ darwinSystemValues ++ otherSystemValues;
+  allSystemValues =
+    nixosSystemValues
+    ++ darwinSystemValues
+    ++ otherSystemValues;
 
   forAllSystems = func: (nixpkgs.lib.genAttrs allSystemNames func);
-in
-{
+in {
   # Add attribute sets into outputs, for debugging
-  debugAttrs = { inherit nixosSystems darwinSystems otherSystems allSystems allSystemNames; };
+  debugAttrs = {
+    inherit nixosSystems darwinSystems otherSystems allSystems allSystemNames;
+  };
 
   # NixOS Hosts
   nixosConfigurations =
-    lib.attrsets.mergeAttrsList (map (it: it.nixosConfigurations or { }) nixosSystemValues);
+    lib.attrsets.mergeAttrsList
+    (map (it: it.nixosConfigurations or {}) nixosSystemValues);
 
   # macOS Hosts
   darwinConfigurations =
-    lib.attrsets.mergeAttrsList (map (it: it.darwinConfigurations or { }) darwinSystemValues);
+    lib.attrsets.mergeAttrsList
+    (map (it: it.darwinConfigurations or {}) darwinSystemValues);
 
   # nix home-manager Config
   homeConfigurations =
-    lib.attrsets.mergeAttrsList (map (it: it.homeConfigurations or { }) otherSystemValues);
+    lib.attrsets.mergeAttrsList
+    (map (it: it.homeConfigurations or {}) otherSystemValues);
 
   # Packages
-  packages = forAllSystems (
-    system: allSystems.${system}.packages or { }
-  );
+  packages = forAllSystems (system: allSystems.${system}.packages or {});
 
   # Eval Tests for all NixOS & darwin systems.
-  evalTests = lib.lists.all (it: it.evalTests == { }) allSystemValues;
+  evalTests = lib.lists.all (it: it.evalTests == {}) allSystemValues;
 
   # Format the nix code in this flake
   formatter = forAllSystems (

@@ -13,8 +13,7 @@
     rm -f ${config.home.homeDirectory}/.gitconfig
   '';
 
-  home.packages = with pkgs; [
-  ];
+  home.packages = with pkgs; [];
 
   programs.git = {
     enable = true;
@@ -23,13 +22,13 @@
     userName = myvars.userfullname;
     userEmail = myvars.useremail;
 
-    includes = [
-      {
-        # use different email & name for work
-        path = "~/work/.gitconfig";
-        condition = "gitdir:~/work/";
-      }
-    ];
+    # includes = [
+    # {
+    # use different email & name for work
+    # path = "~/work/.gitconfig";
+    # condition = "gitdir:~/work/";
+    # }
+    # ];
 
     extraConfig = {
       init.defaultBranch = "main";
@@ -39,8 +38,8 @@
 
       # replace https with ssh
       url = {
-        "ssh://git@github.com/ryan4yin" = {
-          insteadOf = "https://github.com/ryan4yin";
+        "ssh://git@github.com/mochouaaaaa" = {
+          insteadOf = "https://github.com/mochouaaaaa";
         };
         # "ssh://git@gitlab.com/" = {
         #   insteadOf = "https://gitlab.com/";

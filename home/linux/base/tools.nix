@@ -6,6 +6,7 @@
     wireguard-tools # manage wireguard vpn manually, via wg-quick
 
     ventoy # create bootable usb
+    persepolis
   ];
 
   # auto mount usb drives

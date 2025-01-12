@@ -32,11 +32,11 @@
       plugins = with pkgs.obs-studio-plugins; [
         # screen capture
         wlrobs
-        # obs-ndi
+        obs-ndi
         obs-vaapi
         obs-nvfbc
         obs-teleport
-        # obs-hyperion
+        obs-hyperion
         droidcam-obs
         obs-vkcapture
         obs-gstreamer
@@ -52,7 +52,7 @@
         obs-command-source
         obs-move-transition
         obs-backgroundremoval
-        # advanced-scene-switcher
+        advanced-scene-switcher
         obs-pipewire-audio-capture
       ];
     };
