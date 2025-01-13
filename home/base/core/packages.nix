@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     fastfetch
     bat
@@ -32,7 +32,7 @@
     # search for files by name, faster than find
     fd
     # search for files by its content, replacement of grep
-    (ripgrep.override {withPCRE2 = true;})
+    (ripgrep.override { withPCRE2 = true; })
 
     # A fast and polyglot tool for code searching, linting, rewriting at large scale
     # supported languages: only some mainstream languages currently(do not support nix/nginx/yaml/toml/...)
@@ -62,7 +62,7 @@
     # productivity
     caddy # A webserver with automatic HTTPS via Let's Encrypt(replacement of nginx)
     croc # File transfer between computers securely and easily
-    ncdu # analyzer your disk usage Interactively, via TUI(replacement of `du`)
+    # ncdu # analyzer your disk usage Interactively, via TUI(replacement of `du`)
 
     # dev env
     zinit

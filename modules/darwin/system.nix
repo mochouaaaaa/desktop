@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   # Add ability to used TouchID for sudo authentication
   security.pam.enableSudoTouchIdAuth = true;
 
@@ -124,7 +124,10 @@
     # keyboard settings is not very useful on macOS
     # the most important thing is to remap option key to alt key globally,
     # but it's not supported by macOS yet.
-    keyboard = {};
+    keyboard = {
+      enableKeyMapping = true;
+      remapCapsLockToEscape = true;
+    };
   };
 
   # Fonts
@@ -142,10 +145,10 @@
 
       # nerdfonts
       # https://github.com/NixOS/nixpkgs/blob/nixos-unstable-small/pkgs/data/fonts/nerd-fonts/manifests/fonts.json
-      nerd-fonts.symbols-only # symbols icon only
-      nerd-fonts.fira-code
-      nerd-fonts.jetbrains-mono
-      nerd-fonts.iosevka
+      # nerd-fonts.symbols-only # symbols icon only
+      # nerd-fonts.fira-code
+      # nerd-fonts.jetbrains-mono
+      # nerd-fonts.iosevka
 
       julia-mono
       dejavu_fonts

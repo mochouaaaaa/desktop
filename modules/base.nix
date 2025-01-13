@@ -1,11 +1,10 @@
-{
-  pkgs,
-  myvars,
-  nuenv,
-  nixpkgs,
-  lib,
-  inputs,
-  ...
+{ pkgs
+, myvars
+, nuenv
+, nixpkgs
+, lib
+, inputs
+, ...
 } @ args: {
   nixpkgs.overlays = [
     nuenv.overlays.default
@@ -17,8 +16,7 @@
   environment.variables.EDITOR = "nvim --clean";
 
   environment.systemPackages = with pkgs; [
-    mihomo-party
-    fusuma # 手势触控板
+    # fusuma # 手势触控板
     git # used by nix flakes
     git-lfs # used by huggingface models
 
@@ -35,7 +33,7 @@
     unzipNLS
     p7zip
 
-    vsftpd
+    # vsftpd
     # Text Processing
     # Docs: https://github.com/learnbyexample/Command-line-text-processing
     gnugrep # GNU grep, provides `grep`/`egrep`/`fgrep`
@@ -64,12 +62,12 @@
 
   nix.settings = {
     # enable flakes globally
-    experimental-features = ["nix-command" "flakes"];
+    experimental-features = [ "nix-command" "flakes" ];
 
     # given the users in this list the right to specify additional substituters via:
     #    1. `nixConfig.substituers` in `flake.nix`
     #    2. command line args `--options substituers http://xxx`
-    trusted-users = [myvars.username];
+    trusted-users = [ myvars.username ];
 
     # substituers that will be considered before the official ones(https://cache.nixos.org)
     substituters = [

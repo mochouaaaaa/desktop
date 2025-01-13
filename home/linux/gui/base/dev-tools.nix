@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     mihomo
     clash-verge-rev
@@ -14,15 +14,15 @@
     (telegram-desktop.override {
       unwrapped =
         telegram-desktop.unwrapped.overrideAttrs
-        (finalAttrs: previousAttrs: {
-          src = fetchFromGitHub {
-            owner = "kukuruzka165";
-            repo = "materialgram";
-            rev = "refs/tags/v5.9.0.1";
-            hash = "sha256-QmXwO8Dn+ATWGwN5smxOB2kxmJZETSMbqwFoR0t3luc=";
-            fetchSubmodules = true;
-          };
-        });
+          (finalAttrs: previousAttrs: {
+            src = fetchFromGitHub {
+              owner = "kukuruzka165";
+              repo = "materialgram";
+              rev = "refs/tags/v5.9.0.1";
+              hash = "sha256-QmXwO8Dn+ATWGwN5smxOB2kxmJZETSMbqwFoR0t3luc=";
+              fetchSubmodules = true;
+            };
+          });
     })
     thunderbird-latest-unwrapped
 

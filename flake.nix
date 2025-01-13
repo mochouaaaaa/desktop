@@ -41,6 +41,8 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
 
     # for macos
+    nix-darwin.url = "github:LnL7/nix-darwin";
+
     # home-manager, used for managing user configuration
     home-manager = {
       url = "github:nix-community/home-manager/master";

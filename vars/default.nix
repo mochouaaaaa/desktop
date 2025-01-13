@@ -1,4 +1,4 @@
-{lib}: {
+{ lib }: {
   username = "mochou";
   userfullname = "mochou aaaaaa";
   useremail = "mm.mochou@gmail.com";
@@ -7,7 +7,7 @@
 
   # mac 上不使用
   jetbrains = {
-    enable = true;
+    enable = false;
     pycharm = true;
     clion = false;
     datagrip = true;
@@ -27,7 +27,7 @@
 
   networking = {
     defaultGateway = "192.168.1.1";
-    nameservers = ["8.8.8.8" "8.8.4.4"];
+    nameservers = [ "8.8.8.8" "8.8.4.4" ];
 
     mingzi = {
       useDHCPv6 = true;
