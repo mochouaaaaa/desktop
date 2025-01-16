@@ -1,4 +1,8 @@
-{ pkgs, myvars, ... }: {
+{
+  pkgs,
+  myvars,
+  ...
+}: {
   services.samba = {
     enable = true;
     openFirewall = true;

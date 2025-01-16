@@ -1,4 +1,4 @@
-{ lib }: {
+{lib}: {
   username = "mochou";
   userfullname = "mochou aaaaaa";
   useremail = "mm.mochou@gmail.com";
@@ -7,14 +7,15 @@
 
   # mac 上不使用
   jetbrains = {
-    enable = false;
+    enable = true;
     pycharm = true;
     clion = false;
-    datagrip = true;
-    goland = true;
+    datagrip = false;
+    goland = false;
   };
 
-  dotfilePath = "/home/mochou/Code/Projects/source/dotfile";
+  # dotfilePath = "$HOME/.config/dotfile";
+  dotfilePath = "/.config/dotfile";
 
   # hyprland, kde
   desktop = "hyprland";
@@ -27,7 +28,7 @@
 
   networking = {
     defaultGateway = "192.168.1.1";
-    nameservers = [ "8.8.8.8" "8.8.4.4" ];
+    nameservers = ["8.8.8.8" "8.8.4.4"];
 
     mingzi = {
       useDHCPv6 = true;

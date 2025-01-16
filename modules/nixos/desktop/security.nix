@@ -1,4 +1,8 @@
-{ config, pkgs, ... }: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   # nix.extraOptions = ''
   #   !include ${config.age.secrets.nix-access-tokens.path}
   # '';
@@ -11,12 +15,14 @@
   # security with gnome-kering
   services.gnome.gnome-keyring.enable = false;
   security.pam.services.greetd.enableGnomeKeyring = true;
-  security.pam.loginLimits = [{
-    domain = "@users";
-    item = "rtprio";
-    type = "-";
-    value = 1;
-  }];
+  security.pam.loginLimits = [
+    {
+      domain = "@users";
+      item = "rtprio";
+      type = "-";
+      value = 1;
+    }
+  ];
 
   # gpg agent with pinentry
   programs.gnupg.agent = {

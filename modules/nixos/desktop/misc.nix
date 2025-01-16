@@ -1,6 +1,12 @@
-{ config, lib, pkgs, pkgs-unstable, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  pkgs-unstable,
+  ...
+}: {
   # add user's shell into /etc/shells
-  environment.shells = with pkgs; [ zsh bash ];
+  environment.shells = with pkgs; [zsh bash];
   # set user's default shell system-wide
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;

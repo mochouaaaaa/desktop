@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     linuxKernel.packages.linux_zen.vmware
     virt-viewer
@@ -48,11 +48,12 @@
   ];
 
   # For Intel:
-  /* options kvm_intel nested=1
-     options kvm_intel emulate_invalid_guest_state=0
-     options kvm ignore_msrs=1
+  /*
+  options kvm_intel nested=1
+  options kvm_intel emulate_invalid_guest_state=0
+  options kvm ignore_msrs=1
   */
-  boot.kernelModules = [ "vfio-pci" ];
+  boot.kernelModules = ["vfio-pci"];
 
   services.spice-vdagentd.enable = true; # 启用 Spice vdagent
   virtualisation = {
@@ -61,7 +62,7 @@
         enable = false;
         package = pkgs.vmware-workstation;
       };
-      guest = { enable = true; };
+      guest = {enable = true;};
     };
 
     virtualbox = {
@@ -80,7 +81,7 @@
       daemon.settings = {
         # enables pulling using containerd, which supports restarting from a partial pull
         # https://docs.docker.com/storage/containerd/
-        "features" = { "containerd-snapshotter" = true; };
+        "features" = {"containerd-snapshotter" = true;};
       };
 
       # start dockerd on boot.
@@ -96,7 +97,7 @@
         package = pkgs.qemu_kvm;
         runAsRoot = true;
         swtpm.enable = true;
-        vhostUserPackages = [ pkgs.virtiofsd ];
+        vhostUserPackages = [pkgs.virtiofsd];
         ovmf = {
           enable = true;
           #packages = [(pkgs.unstable.OVMF.override {
@@ -104,7 +105,8 @@
             (pkgs.OVMF.override {
               secureBoot = true;
               tpmSupport = true;
-            }).fd
+            })
+            .fd
           ];
         };
       };
