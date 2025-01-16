@@ -1,9 +1,5 @@
-{
-  config,
-  pkgs,
-  myvars,
-  ...
-}: let
+{ config, pkgs, myvars, ... }:
+let
   # jetbra = pkgs.fetchFromGitHub {
   #   owner = "WhyFeelSad";
   #   repo = "jetbra";
@@ -16,7 +12,9 @@
     datagrip = enable && myvars.jetbrains.datagrip;
     clion = enable && myvars.jetbrains.clion;
   };
-  initjetbrains = jetbrainsConfig myvars.jetbrains.enable;
+  isDarwin = pkgs.stdenv.isDarwin;
+
+  initjetbrains = jetbrainsConfig (myvars.jetbrains.enable && !isDarwin);
 
   jetbra = pkgs.stdenv.mkDerivation {
     name = "jetbra";
@@ -37,14 +35,12 @@
   '';
 in {
   home.packages = with pkgs;
-    []
-    ++ (lib.optionals (initjetbrains.pycharm) [
-      (pkgs.jetbrains.pycharm-professional.override {vmopts = vmoptions;})
-    ])
-    ++ (lib.optionals (initjetbrains.goland)
-      [(pkgs.jetbrains.goland.override {vmopts = vmoptions;})])
+    [ ] ++ (lib.optionals (initjetbrains.pycharm) [
+      (pkgs.jetbrains.pycharm-professional.override { vmopts = vmoptions; })
+    ]) ++ (lib.optionals (initjetbrains.goland)
+      [ (pkgs.jetbrains.goland.override { vmopts = vmoptions; }) ])
     ++ (lib.optionals (initjetbrains.datagrip)
-      [(pkgs.jetbrains.datagrip.override {vmopts = vmoptions;})])
+      [ (pkgs.jetbrains.datagrip.override { vmopts = vmoptions; }) ])
     ++ (lib.optionals (initjetbrains.clion)
-      [(pkgs.jetbrains.clion.override {vmopts = vmoptions;})]);
+      [ (pkgs.jetbrains.clion.override { vmopts = vmoptions; }) ]);
 }
